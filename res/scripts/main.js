@@ -128,7 +128,7 @@ function setVersion() {
 //background image
 function setBackground() {
     console.log(currentImage);
-    $("body").css('background-image', `url('../res/blobs/${currentImage}.jpg')`);
+    $("body").css('background-image', `url('./res/blobs/${currentImage}.jpg')`);
 }
 
 //make editable
