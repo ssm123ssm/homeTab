@@ -1,0 +1,187 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-image: url('../blobs/7.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    user-select: none;
+}
+
+.name {
+    text-align: center;
+    font-size: 50px;
+    color: white;
+    padding: 10px;
+}
+
+.greeting {
+    text-align: center;
+    margin-top: 0px;
+    font-size: 30px;
+    color: white;
+}
+
+.time {
+    text-align: center;
+    font-size: 105px;
+    color: white;
+    margin-top: 40px
+}
+
+.img2 {
+    margin: auto;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+img {
+    height: 180px;
+    width: 180px;
+}
+
+.date {
+    text-align: center;
+    font-size: 30px;
+    color: white;
+}
+
+.filter {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    background-color: rgba(8, 8, 8, 0.38);
+    z-index: -10;
+}
+
+.filter2 {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    background-color: rgb(255, 255, 255);
+    z-index: 10;
+    transition: all 1s ease;
+}
+
+.filter-loaded {
+    background-color: rgba(240, 248, 255, 0);
+}
+
+.sec {
+    font-size: 34px;
+    position: relative;
+    left: -16px;
+}
+
+.weather {
+    color: white;
+    display: block;
+    text-align: right;
+    margin-right: 20px;
+    font-size: 20px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover,
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.account {
+    font-size: 18px;
+}
+
+.white-font {
+    color: white;
+}
+
+.heading {
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    margin-top: 20px;
+}
+
+.form-box {
+    width: 80vw;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 500px;
+    padding: 40px;
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.center {
+    margin: auto;
+    text-align: center;
+}
+
+.sub {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.r1 {
+    max-width: 500px;
+    width: 60vw;
+    margin: auto;
+}
+
+.name-box {
+    margin-top: 40px;
+}
+
+.photo-box {
+    margin-top: 30px;
+    height: 200px;
+    padding: 5px;
+}
+
+.pb {
+    height: 180px;
+}
+
+.user_name {
+    position: relative;
+    display: inline-block;
+}
+
+.overlay_name {
+    margin: auto;
+    text-align: left;
+    width: auto;
+    display: none;
+    background-color: rgba(240, 248, 255, 0);
+    border: none;
+    color: white;
+}
+
+.editable {
+    transition: all 1s ease;
+}
+
+.editing {
+    text-decoration: underline;
+    background-color: rgba(15, 15, 15, 0.37);
+}
+
+.version {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+}
