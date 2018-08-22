@@ -1,23 +1,23 @@
 var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = [
-  /*'res/styles/main.css',*/
-'res/styles/bootstrap.css',
-    /*'res/scripts/main.js',*/
-    'res/scripts/angular.js',
-    'res/scripts/jquery.js',
-    'res/scripts/tether.min.js',
-    'res/scripts/bootstrap.js',
-    'res/scripts/cookies.js',
-    /*'index.html',*/
-    'pic.jpg',
-    '/res/blobs/1.jpg',
-    '/res/blobs/2.jpg',
-    '/res/blobs/3.jpg',
-    '/res/blobs/4.jpg',
-    '/res/blobs/5.jpg',
-    '/res/blobs/6.jpg',
-    '/res/blobs/7.jpg',
-    '/res/blobs/8.jpg'
+  './res/styles/main.css',
+'./res/styles/bootstrap.css',
+    './res/scripts/main.js',
+    './res/scripts/angular.js',
+    './res/scripts/jquery.js',
+    './res/scripts/tether.min.js',
+    './res/scripts/bootstrap.js',
+    './res/scripts/cookies.js',
+    './index.html',
+/*    './pic.jpg',*/
+    './res/blobs/1.jpg',
+    './res/blobs/2.jpg',
+    './res/blobs/3.jpg',
+    './res/blobs/4.jpg',
+    './res/blobs/5.jpg',
+    './res/blobs/6.jpg',
+    './res/blobs/7.jpg',
+    './res/blobs/8.jpg'
 
 ];
 
