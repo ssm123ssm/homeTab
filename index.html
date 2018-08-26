@@ -23,14 +23,22 @@
         <div>{{city}}</div>
         <div>{{weather}}</div>
     </div>
-    <div class="name">{{greeting}}
-        <div class="user_name">
-            <span class="user_name_self" spellcheck="false">{{user}}</span>!
 
+    <div class="cover">
+        <div class="main-frame">
+            <div class="name">{{greeting}}
+                <div class="user_name">
+                    <span class="user_name_self" spellcheck="false">{{user}}</span>!
+
+                </div>
+            </div>
+            <div class="time">{{time | date:'hh:mm'}} <span class="sec">{{time | date:': ss a'}}</span></div>
+            <div class="date">{{time | date:'EEEE, MMMM d'}}</div>
         </div>
     </div>
-    <div class="time">{{time | date:'hh:mm'}} <span class="sec">{{time | date:': ss a'}}</span></div>
-    <div class="date">{{time | date:'EEEE, MMMM d'}}</div>
+
+
+
     <div class="version">version</div>
 
 

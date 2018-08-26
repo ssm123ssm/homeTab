@@ -30,7 +30,6 @@ body {
     text-align: center;
     font-size: 105px;
     color: white;
-    margin-top: 40px
 }
 
 .img2 {
@@ -184,4 +183,16 @@ a:visited {
     bottom: 10px;
     right: 10px;
     color: white;
+}
+
+.cover {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: table;
+}
+
+.main-frame {
+    display: table-cell;
+    vertical-align: middle;
 }
