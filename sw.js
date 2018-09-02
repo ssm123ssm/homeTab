@@ -1,15 +1,15 @@
 var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = [
     './res/styles/main.css',
-'./res/styles/bootstrap.css',
     './res/scripts/main.js',
+    './res/styles/bootstrap.css',
+    './res/styles/animate.css',
     './res/scripts/angular.js',
     './res/scripts/jquery.js',
     './res/scripts/tether.min.js',
     './res/scripts/bootstrap.js',
     './res/scripts/cookies.js',
     './index.html',
-/*    './pic.jpg',*/
     './res/blobs/1.jpg',
     './res/blobs/2.jpg',
     './res/blobs/3.jpg',

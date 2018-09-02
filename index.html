@@ -7,6 +7,7 @@
     <title>Welcome</title>
     <link rel="stylesheet" href="res/styles/bootstrap.css">
     <link rel="stylesheet" href="res/styles/main.css">
+    <link rel="stylesheet" href="res/styles/animate.css">
     <script src="res/scripts/angular.js"></script>
     <script src="res/scripts/jquery.js"></script>
     <script src="res/scripts/tether.min.js"></script>
@@ -35,10 +36,30 @@
             <div class="time">{{time | date:'hh:mm'}} <span class="sec">{{time | date:': ss a'}}</span></div>
             <div class="date">{{time | date:'EEEE, MMMM d'}}</div>
         </div>
+
+        <div class="todo-frame animated">
+            <div class="todo-head text-center">To-do</div>
+            <div class="todo-frame-t">
+                <div class="todo-welcome text-center">
+                    Add todo to display here
+                    <button class="btn btn-primary m-3 mx-auto d-block" id="add-todo-btn">Add todo</button>
+                </div>
+            </div>
+            <div class="todos">
+                <div class="todo-item p-1 animated fadeIn" ng-repeat='todo in todos track by $index'>
+                    <input type="checkbox" class="todo-check" ng-checked={{todo.checked}}>
+                    <div class="{{todo.status}} td">{{todo.todo}} </div>
+                </div>
+            </div>
+            <div class="add-todo d-none">
+                <input class="add-todo-input" placeholder="New todo">
+            </div>
+
+        </div>
     </div>
 
 
-
+    <div class="link link-todo">Todo</div>
     <div class="version">version</div>
 
 

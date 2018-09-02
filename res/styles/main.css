@@ -10,6 +10,8 @@ body {
     background-attachment: fixed;
     position: relative;
     user-select: none;
+    color: white;
+    overflow: hidden;
 }
 
 .name {
@@ -190,9 +192,89 @@ a:visited {
     width: 100vw;
     height: 100vh;
     display: table;
+    top: 0;
 }
 
 .main-frame {
     display: table-cell;
     vertical-align: middle;
+}
+
+.todo-frame {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    width: 288px;
+    padding-bottom: 37px;
+    background-color: rgba(0, 0, 0, 0.74);
+    display: none;
+}
+
+.todo-frame-t {
+    height: 196px;
+    width: 100%;
+    display: table;
+}
+
+.todo-head {
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-bottom: 1px solid white;
+}
+
+.todo-welcome {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.link {
+    cursor: pointer;
+    position: fixed;
+    bottom: 10px;
+    color: white;
+}
+
+.link-todo {
+    right: 80px;
+}
+
+.animated {
+    /*    animation-duration: 0.2s !important;*/
+}
+
+.add-todo {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.add-todo-input {
+    background-color: rgba(0, 0, 0, 0.32);
+    width: 100%;
+    border: none;
+    padding: 5px;
+    box-sizing: border-box;
+    outline: none;
+    color: white;
+}
+
+.todo-check {
+    margin-right: 5px;
+    margin-left: 3px;
+    position: relative;
+    top: 3px;
+}
+
+.td {
+    display: inline-block;
+    width: 248px;
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+.editable:focus {
+    outline: none;
 }
