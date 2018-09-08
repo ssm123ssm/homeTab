@@ -4,6 +4,7 @@ var urlsToCache = [
     './res/scripts/main.js',
     './res/styles/bootstrap.css',
     './res/styles/animate.css',
+    /*'./res/scripts/angular-animate.js',*/
     './res/scripts/angular.js',
     './res/scripts/jquery.js',
     './res/scripts/tether.min.js',

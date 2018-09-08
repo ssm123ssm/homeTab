@@ -14,10 +14,39 @@ app.controller('ctrl', ['$scope', function ($scope) {
     $scope.am = true;
     $scope.greeting = "Greetings,";
     $scope.todos = [];
+    $scope.todoDelete = function (event) {
+        collapseAllTodoOptionPopups();
+        if (confirm('Are you sure to delete this todo item?')) {
+            $scope.todos.splice(angular.element(event.target).scope().$index, 1);
+            saveTodos();
+            if ($scope.todos.length == 0) {
+                $(".add-todo-input").blur();
+            }
+            collapseAllTodoOptionPopups();
+        }
+
+    };
+    $scope.todoOptions = function (event) {
+        var isOpen = angular.element(event.target).scope().showPopup;
+        collapseAllTodoOptionPopups();
+        if (!isOpen) {
+            openTodoOptions(event);
+        }
+    }
+    $scope.mark = function (todo) {
+        todo.checked ? uncheck(todo) : check(todo);
+        collapseAllTodoOptionPopups();
+    }
+    $scope.triggerEdit = function (event) {
+        var node = $(event.target).parent().siblings(".td")[0];
+        collapseAllTodoOptionPopups();
+        $(node).dblclick();
+    }
 
     //getting location details
     getLocation($scope);
 
+    //Time updating
     setInterval(function () {
         $scope.time = Date.now();
         var hour = new Date().getHours();
@@ -71,9 +100,35 @@ function getLocation(scope) {
     });
 }
 
+//todo checking the box
+function check(todo) {
+    todo.checked = true;
+    todo.status = 'completed';
+    saveTodos();
+}
+
+//todo unchecking
+function uncheck(todo) {
+    todo.checked = false;
+    todo.status = 'pending';
+    saveTodos();
+}
+
+//Toggle todo options popup
+function openTodoOptions(event) {
+    angular.element(event.target).scope().showPopup = 1;
+}
+
+//collapsing all popup menus
+function collapseAllTodoOptionPopups() {
+    $(".options").each(function (elem) {
+        angular.element($(".options")[elem]).scope().showPopup = 0;
+    });
+
+}
+
 //GETTING USERNAME AND CURRENT IMAGE KEYS, AND UPDATING COOKIE FOR NEXT TIME
 function getCookie() {
-
     if (Cookies.get('homeTab')) {
         var cookie = Cookies.getJSON('homeTab');
         angular.element(document.getElementById('parent')).scope().user = cookie.name;
@@ -171,6 +226,7 @@ function makeEditable(elem, ctx) {
 
     elem.addClass('editable');
     elem.dblclick(function (e) {
+        console.log($(e.target));
         init = $(e.target).html();
         window.getSelection().removeAllRanges();
         $(e.target).attr('contenteditable', 'true');
@@ -217,7 +273,7 @@ function makeEditable(elem, ctx) {
                 $(e.target).removeClass('editing');
                 angular.element(e.target).scope().todo.todo = $(e.target).html();
                 angular.element(e.target).scope().$apply();
-                setTodos();
+                saveTodos();
             }
 
             $(e.target).blur(function () {
@@ -229,7 +285,7 @@ function makeEditable(elem, ctx) {
                 $(e.target).removeClass('editing');
                 angular.element(e.target).scope().todo.todo = $(e.target).html();
                 angular.element(e.target).scope().$apply();
-                setTodos();
+                saveTodos();
             });
 
         });
@@ -251,7 +307,7 @@ function getTodos() {
 }
 
 //SAVING ANGULAR SCOPE'S TODOS INTO COOKIE
-function setTodos() {
+function saveTodos() {
     Cookies.set('todos', {
         todos: angular.element(document.getElementById('parent')).scope().todos
     }, {
@@ -271,7 +327,7 @@ function todoCheck() {
             scope.todo.checked = false;
         }
         scope.$apply();
-        setTodos();
+        saveTodos();
     });
 }
 
@@ -339,6 +395,7 @@ $(window).on('load', function () {
     descendCurtain();
 
     //EVENT LISTENERS
+
     //TODO
     $(".link-todo").click(function () {
         toggle($(".todo-frame"), 'fadeIn', 'fadeOut', 'todo');
@@ -348,7 +405,6 @@ $(window).on('load', function () {
             $(".add-todo-input").focus();
         }
     });
-
     $("#add-todo-btn").click(function () {
         $(".todo-frame-t").addClass("d-none");
         $(".add-todo").removeClass("d-none");
@@ -360,7 +416,6 @@ $(window).on('load', function () {
             $(".add-todo").addClass("d-none");
         }
     });
-
     $(".add-todo-input").keypress(function (e) {
         if (e.which == 13) {
             if ($(".add-todo-input").val() != '') {
@@ -370,7 +425,7 @@ $(window).on('load', function () {
                 angular.element(document.getElementById('parent')).scope().todos.push({
                     todo: todo,
                     status: 'pending',
-                    checked: 'unchecked'
+                    checked: false
                 });
                 angular.element(document.getElementById('parent')).scope().$apply();
                 makeEditable($(".todo-item"), 'todo');

@@ -46,9 +46,15 @@
                 </div>
             </div>
             <div class="todos">
-                <div class="todo-item p-1 animated fadeIn" ng-repeat='todo in todos track by $index'>
-                    <input type="checkbox" class="todo-check" ng-checked={{todo.checked}}>
+                <div class="todo-item p-1 animated fadeIn" ng-repeat='todo in todos track by $index' ng-init='visible = 0' ng-mouseover='visible = 1' ng-mouseleave='visible = 0'>
+                    <input type="checkbox" class="todo-check" ng-checked={{todo.checked}} ng-model="todo.checked">
                     <div class="{{todo.status}} td">{{todo.todo}} </div>
+                    <div class="options" ng-show="visible" ng-click="todoOptions($event)">...</div>
+                    <div class="option-popup" ng-if="showPopup">
+                        <div class="option-item" ng-model="todo" ng-click="mark(todo)">Mark as {{todo.checked ? "pending" : "completed"}}</div>
+                        <div class="option-item" ng-click="todoDelete($event)">Delete item</div>
+                        <div class="option-item" ng-click="triggerEdit($event)">Edit</div>
+                    </div>
                 </div>
             </div>
             <div class="add-todo d-none">

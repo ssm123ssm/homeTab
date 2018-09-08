@@ -278,3 +278,54 @@ a:visited {
 .editable:focus {
     outline: none;
 }
+
+.todo-item {
+    position: relative;
+    transition: all 1s ease;
+}
+
+.collapsed {
+    max-height: 0;
+    overflow: hidden;
+}
+
+.options {
+    width: 30px;
+    position: absolute;
+    top: 0;
+    z-index: 13;
+    right: -10px;
+    cursor: pointer;
+}
+
+.option-popup {
+    filter: blur(0px) !important;
+    width: 200px;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.78);
+    border-radius: 5px;
+    font-size: 13px;
+    position: absolute;
+    bottom: 25px;
+    right: 0;
+}
+
+.f13 {
+    padding: 5px;
+    font-size: 13px;
+}
+
+.blur {
+    filter: blur(2px);
+}
+
+.option-item {
+    cursor: pointer;
+    transition: all .2s ease;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.option-item:hover {
+    background-color: rgba(136, 136, 136, 0.23);
+}
