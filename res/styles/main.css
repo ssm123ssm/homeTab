@@ -28,6 +28,10 @@ body {
     color: white;
 }
 
+.red {
+    color: red;
+}
+
 .time {
     text-align: center;
     font-size: 105px;
@@ -328,4 +332,70 @@ a:visited {
 
 .option-item:hover {
     background-color: rgba(136, 136, 136, 0.23);
+}
+
+.focus {
+    text-align: center;
+    font-size: 31px;
+    background-color: rgba(0, 0, 0, 0.62);
+}
+
+.focus-done {}
+
+.fa-check-circle {
+    color: #34ce34;
+    margin-left: 9px;
+}
+
+.disabled {
+    color: grey;
+    cursor: inherit;
+}
+
+.disabled:hover {
+    background-color: unset;
+}
+
+.timer {
+    font-size: 37px;
+}
+
+.time-setter-frame {
+    display: none;
+    width: 350px;
+    position: absolute;
+    height: 214px;
+    background-color: black;
+    top: 382px;
+    left: 161px;
+    padding: 23px;
+}
+
+.display-table {
+    display: table;
+}
+
+.display-table-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.current-value {
+    font-size: 29px;
+}
+
+.custom-close {
+    color: white;
+    position: relative;
+    top: -22px;
+    right: -12px;
+}
+
+.done-todo {
+    display: none;
+    font-size: 24px;
+    text-align: center;
+    width: 200px;
+    margin: auto;
+    /*background-color: rgba(0, 0, 0, 0.47);*/
 }
