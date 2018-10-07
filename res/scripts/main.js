@@ -1,16 +1,20 @@
-const VERSION = 1.3;
+const VERSION = 2.1;
 const VERSION_HISTORY = {
     1.0: 'Basic HomeTab Dashboard',
     1.1: 'Adding TODO functionality',
     1.2: 'Adding Focus on functionality',
-    1.3: 'Adding Timer functionality'
+    1.3: 'Adding Timer functionality',
+    2.1: 'With new images BETA'
 }
-const IMAGES = 8;
+const IMAGES = 24;
 const CONGRADS = ['Way to go', 'Good job', 'Nice work', 'Awesome', 'It\'s done'];
 var user = "User";
 var currentImage = Math.floor(Math.random() * IMAGES) + 1;
 var timerInterval;
+var congradsTimeoutRunning = false;
 
+//intervals
+var intervals = [];
 //ANGULAR
 var app = angular.module('myApp', []);
 app.controller('ctrl', ['$scope', function ($scope) {
@@ -175,6 +179,8 @@ app.controller('ctrl', ['$scope', function ($scope) {
 
 
         if (timerInterval) {
+            clearFromIntervals(timerInterval);
+            console.log('Timer interval ' + timerInterval + ' clearerd');
             clearInterval(timerInterval);
         }
         timerInterval = setInterval(function () {
@@ -184,6 +190,8 @@ app.controller('ctrl', ['$scope', function ($scope) {
                 clearInterval(timerInterval);
             }
         }, 60000);
+        intervals.push(timerInterval);
+        console.log('Interval set from startTimer', intervals);
         toggle($(".time-setter-frame"), 'fadeIn', 'fadeOut');
         toggle($(".todo-frame"), 'fadeIn', 'fadeOut');
     }
@@ -194,15 +202,26 @@ app.controller('ctrl', ['$scope', function ($scope) {
             todo.focused = false;
             $scope.focus = undefined;
             $scope.timerSet = false;
+            $scope.timer.ongoing = false;
+            clearInterval(timerInterval);
+            console.log('timerInterval ' + timerInterval + ' cleared');
         } else {
             //unfocussing all
             $scope.todos.forEach(function (item) {
                 if (item.focused) {
                     item.focused = false;
+                    $scope.focus = undefined;
+                    $scope.timerSet = false;
+                    $scope.timer.ongoing = false;
                 }
             });
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                console.log('timerInterval ' + timerInterval + ' cleared');
+            }
             todo.focused = true;
             $scope.timerSet = false;
+            $scope.timer.ongoing = false;
             $scope.focus_done = todo.checked;
             $scope.focus = todo.todo;
         }
@@ -234,7 +253,7 @@ app.controller('ctrl', ['$scope', function ($scope) {
     getLocation($scope);
 
     //Time updating
-    setInterval(function () {
+    intervals.push(setInterval(function () {
         $scope.time = Date.now();
         var hour = new Date().getHours();
         if (new Date().getHours() >= 12) {
@@ -252,7 +271,8 @@ app.controller('ctrl', ['$scope', function ($scope) {
             $scope.greeting = "Good morning,"
         }
         $scope.$apply();
-    }, 1000);
+    }, 1000));
+    console.log('interval set from Time', intervals);
     }]);
 
 
@@ -318,11 +338,22 @@ function check(todo) {
     }
     todo.checked = true;
     todo.status = 'completed';
-    $('.done-todo').html(CONGRADS[Math.floor(Math.random() * (CONGRADS.length - 1))] + '!!!');
-    toggle($('.done-todo'), 'zoomIn', 'zoomOut');
-    setTimeout(function () {
+
+    if (!congradsTimeoutRunning) {
+        $('.done-todo').html(CONGRADS[Math.floor(Math.random() * (CONGRADS.length - 1))] + '!!!');
+
+        congradsTimeoutRunning = true;
+        setTimeout(function () {
+            congradsTimeoutRunning = false;
+        }, 2100);
+
         toggle($('.done-todo'), 'zoomIn', 'zoomOut');
-    }, 1000);
+        setTimeout(function () {
+            toggle($('.done-todo'), 'zoomIn', 'zoomOut');
+        }, 1000);
+    }
+
+
     saveTodos();
 }
 
@@ -542,7 +573,7 @@ function makeEditable(elem, ctx) {
 
 //getting timer details
 function getTimer() {
-    console.log('here');
+
     if (Cookies.get('target')) {
         //debugger;
         var nw = Date.now();
@@ -566,10 +597,6 @@ function getTimer() {
             if (secs >= 30) {
                 mins += 1;
             }
-            console.log(days);
-            console.log(hours);
-            console.log(mins);
-
             scope.timer.days = days;
             scope.timer.hours = hours;
             scope.timer.mins = mins;
@@ -582,6 +609,8 @@ function getTimer() {
             //timerLoop here
             if (timerInterval) {
                 clearInterval(timerInterval);
+                clearFromIntervals(timerInterval);
+                console.log('Timer interval ' + timerInterval + ' clearerd');
             }
             timerInterval = setInterval(function () {
                 angular.element($("#parent")).scope().timer.decreaseMins();
@@ -590,11 +619,20 @@ function getTimer() {
                     scope.timer.timeout = true;
                 }
             }, 60000);
+            intervals.push(timerInterval);
+            console.log('interval set from getTimer', intervals);
 
         }
         if (ongoing && diff_s < 0) {
             scope.timer.timeout = true;
         }
+    }
+}
+
+function clearFromIntervals(val) {
+    var index = intervals.indexOf(val);
+    if (val >= 0) {
+        intervals.splice(index, 1);
     }
 }
 
@@ -629,11 +667,20 @@ function todoCheck() {
         if (e.target.checked) {
             scope.todo.status = 'completed';
             scope.todo.checked = true;
-            $('.done-todo').html(CONGRADS[Math.floor(Math.random() * (CONGRADS.length - 1))] + '!!!');
-            toggle($('.done-todo'), 'zoomIn', 'zoomOut');
-            setTimeout(function () {
+            //debugger;
+            if (!congradsTimeoutRunning) {
+                $('.done-todo').html(CONGRADS[Math.floor(Math.random() * (CONGRADS.length - 1))] + '!!!');
+
+                congradsTimeoutRunning = true;
+                setTimeout(function () {
+                    congradsTimeoutRunning = false;
+                }, 2100);
+
                 toggle($('.done-todo'), 'zoomIn', 'zoomOut');
-            }, 1000);
+                setTimeout(function () {
+                    toggle($('.done-todo'), 'zoomIn', 'zoomOut');
+                }, 1000);
+            }
 
             if (angular.element(e.target).scope().todo.focused) {
                 angular.element($("#parent")).scope().focus_done = true;
@@ -703,6 +750,23 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+//Connectivity checking
+$.ajax({
+    url: '/connect',
+    method: 'POST',
+    data: {
+        version: VERSION
+    },
+    success: function (data) {
+        console.log('Connection established');
+        console.log(data);
+    },
+    error: function (data) {
+        console.log('No connectivity');
+        console.log(data);
+    }
+});
+
 $(window).on('load', function () {
     getCookie();
     getTodos();
@@ -763,5 +827,8 @@ $(window).on('load', function () {
             }
         }
     });
+
+
+
 
 });

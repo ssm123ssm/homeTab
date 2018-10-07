@@ -44,29 +44,7 @@
             <div class="date">{{time | date:'EEEE, MMMM d'}}</div>
         </div>
 
-        <div class="time-setter-frame animated text-center">
-            <div class="close custom-close" ng-click="closeTimeSetter()">x</div>
-            <div class="display-table-cell">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="increment" ng-click="timeSetter.increaseDays()">+</div>
-                        <div class="current-value">{{timeSetter.days}} Days</div>
-                        <div class="decrement" ng-click="timeSetter.decreaseDays()">-</div>
-                    </div>
-                    <div class="col-4">
-                        <div class="increment" ng-click="timeSetter.increaseHours()">+</div>
-                        <div class="current-value">{{timeSetter.hours}} Hours</div>
-                        <div class="decrement" ng-click="timeSetter.decreaseHours()">-</div>
-                    </div>
-                    <div class="col-4">
-                        <div class="increment" ng-click="timeSetter.increaseMins()">+</div>
-                        <div class="current-value">{{timeSetter.mins}} Mins</div>
-                        <div class="decrement" ng-click="timeSetter.decreaseMins()">-</div>
-                    </div>
-                </div>
-                <button class="btn btn-primary btn-block" ng-click="startTimer()">Start</button>
-            </div>
-        </div>
+
 
         <div class="todo-frame animated">
             <div class="todo-head text-center">To-do</div>
@@ -98,6 +76,29 @@
 
     </div>
 
+    <div class="time-setter-frame animated text-center">
+        <div class="close custom-close" ng-click="closeTimeSetter()">x</div>
+        <div class="display-table-cell">
+            <div class="row">
+                <div class="col-4">
+                    <div class="increment pointer" ng-click="timeSetter.increaseDays()">+</div>
+                    <div class="current-value">{{timeSetter.days}} Days</div>
+                    <div class="decrement pointer" ng-click="timeSetter.decreaseDays()">-</div>
+                </div>
+                <div class="col-4">
+                    <div class="increment pointer" ng-click="timeSetter.increaseHours()">+</div>
+                    <div class="current-value">{{timeSetter.hours}} Hours</div>
+                    <div class="decrement pointer" ng-click="timeSetter.decreaseHours()">-</div>
+                </div>
+                <div class="col-4">
+                    <div class="increment pointer" ng-click="timeSetter.increaseMins()">+</div>
+                    <div class="current-value">{{timeSetter.mins}} Mins</div>
+                    <div class="decrement pointer" ng-click="timeSetter.decreaseMins()">-</div>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block" ng-click="startTimer()">Start</button>
+        </div>
+    </div>
 
     <div class="link link-todo">Todo</div>
     <div class="version">version</div>

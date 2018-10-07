@@ -357,17 +357,18 @@ a:visited {
 }
 
 .timer {
-    font-size: 37px;
+    font-size: 27px;
+    font-variant: petite-caps;
 }
 
 .time-setter-frame {
     display: none;
     width: 350px;
-    position: absolute;
+    position: relative;
+    margin: auto;
     height: 214px;
     background-color: black;
-    top: 382px;
-    left: 161px;
+    top: 327px;
     padding: 23px;
 }
 
@@ -393,9 +394,15 @@ a:visited {
 
 .done-todo {
     display: none;
-    font-size: 24px;
+    font-size: 20px;
+    position: relative;
+    top: 45px;
     text-align: center;
     width: 200px;
     margin: auto;
     /*background-color: rgba(0, 0, 0, 0.47);*/
+}
+
+.pointer {
+    cursor: pointer;
 }

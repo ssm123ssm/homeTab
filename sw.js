@@ -19,8 +19,23 @@ var urlsToCache = [
     './res/blobs/5.jpg',
     './res/blobs/6.jpg',
     './res/blobs/7.jpg',
-    './res/blobs/8.jpg'
-
+    './res/blobs/8.jpg',
+    './res/blobs/9.jpg',
+    './res/blobs/10.jpg',
+    './res/blobs/11.jpg',
+    './res/blobs/12.jpg',
+    './res/blobs/13.jpg',
+    './res/blobs/14.jpg',
+    './res/blobs/15.jpg',
+    './res/blobs/16.jpg',
+    './res/blobs/17.jpg',
+    './res/blobs/18.jpg',
+    './res/blobs/19.jpg',
+    './res/blobs/20.jpg',
+    './res/blobs/21.jpg',
+    './res/blobs/22.jpg',
+    './res/blobs/23.jpg',
+    './res/blobs/24.jpg'
 ];
 
 self.addEventListener('install', function (event) {
@@ -46,34 +61,7 @@ self.addEventListener('fetch', function (event) {
                 return response;
             }
             return fetch(event.request);
-            /*console.log('Cahche hit fail. Caching now');
-// IMPORTANT: Clone the request. A request is a stream and
-// can only be consumed once. Since we are consuming this
-// once by cache and once by the browser for fetch, we need
-// to clone the response.
-var fetchRequest = event.request.clone();
 
-return fetch(fetchRequest).then(
-    function (response) {
-        // Check if we received a valid response
-        if (!response || response.status !== 200 || response.type !== 'basic') {
-            return response;
-        }
-
-        // IMPORTANT: Clone the response. A response is a stream
-        // and because we want the browser to consume the response
-        // as well as the cache consuming the response, we need
-        // to clone it so we have two streams.
-        var responseToCache = response.clone();
-
-        caches.open(CACHE_NAME)
-            .then(function (cache) {
-                cache.put(event.request, responseToCache);
-            });
-
-        return response;
-    }
-);*/
         })
     );
 });
