@@ -7,9 +7,11 @@ const VERSION_HISTORY = {
     2.1: 'With new images BETA'
 }
 const IMAGES = 24;
+const CACHED_IMAGES = 4;
 const CONGRADS = ['Way to go', 'Good job', 'Nice work', 'Awesome', 'It\'s done'];
 var user = "User";
 var currentImage = Math.floor(Math.random() * IMAGES) + 1;
+var currentImageCached = Math.floor(Math.random() * CACHED_IMAGES) + 1;
 var timerInterval;
 var congradsTimeoutRunning = false;
 
@@ -481,7 +483,40 @@ function setVersion() {
 
 //background image
 function setBackground() {
-    $("body").css('background-image', `url('./res/blobs/${currentImage}.jpg')`);
+
+
+
+    if (!Cookies.get('imageCache')) {
+        setCustomCookie('imageCache', {
+            images: [1, 2, 3, 4]
+        });
+    }
+    var imageCacheLength = Cookies.getJSON('imageCache').images.length;
+    //Connectivity checking
+    $.ajax({
+        url: '/connect',
+        method: 'POST',
+        data: {
+            version: VERSION
+        },
+        success: function (data) {
+            console.log('Connection established');
+            $("body").css('background-image', `url('./res/blobs/${currentImage}.jpg')`);
+            var newCache = Cookies.getJSON('imageCache').images;
+            if (newCache.indexOf(currentImage) < 0) {
+                newCache.push(currentImage);
+            }
+            setCustomCookie('imageCache', {
+                images: newCache
+            });
+            console.log(Cookies.getJSON('imageCache'));
+        },
+        error: function (data) {
+            console.log('No connectivity');
+            $("body").css('background-image', `url('./res/blobs/${Cookies.getJSON('imageCache').images[Math.floor(Math.random() * imageCacheLength) + 1]}.jpg')`);
+        }
+    });
+
 }
 
 //make editable
@@ -750,22 +785,6 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-//Connectivity checking
-$.ajax({
-    url: '/connect',
-    method: 'POST',
-    data: {
-        version: VERSION
-    },
-    success: function (data) {
-        console.log('Connection established');
-        console.log(data);
-    },
-    error: function (data) {
-        console.log('No connectivity');
-        console.log(data);
-    }
-});
 
 $(window).on('load', function () {
     getCookie();
