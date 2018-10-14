@@ -521,7 +521,7 @@ function setBackground() {
             console.log(Cookies.getJSON('imageCache'));
             var rand = Math.floor(Math.random() * imageCacheLength) + 1;
             console.log('image index is ', rand);
-            $("body").css('background-image', `url('./res/blobs/${Cookies.getJSON('imageCache').images[rand]}.jpg')`);
+            $("body").css('background-image', `url('./res/blobs/${Cookies.getJSON('imageCache').images[rand-1]}.jpg')`);
             angular.element($("#parent")).scope().backgroundLoaded = true;
             angular.element($("#parent")).scope().$apply();
             descendCurtain();
