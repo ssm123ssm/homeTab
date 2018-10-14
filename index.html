@@ -9,15 +9,21 @@
     <link rel="stylesheet" href="res/styles/main.css">
     <link rel="stylesheet" href="res/styles/animate.css">
     <link rel="stylesheet" href="res/styles/font-awesome-4.7.0/css/font-awesome.css">
-    <script src="res/scripts/angular.js"></script>
-    <script src="res/scripts/jquery.js"></script>
-    <script src="res/scripts/tether.min.js"></script>
-    <script src="res/scripts/bootstrap.js"></script>
-    <script src="res/scripts/cookies.js"></script>
-    <script src="res/scripts/main.js"></script>
+
+
 </head>
 
 <body ng-app="myApp" ng-controller="ctrl" id='parent'>
+    <div class="cover loading" ng-if="!backgroundLoaded">
+        <div class="main-frame text-center loading-back">
+            <h1 class="ml12">hometab dashboard</h1>
+            <div class="ml12 ml13">connecting</div>
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+        </div>
+    </div>
     <div class="filter"></div>
     <div class="filter2"></div>
 
@@ -26,6 +32,7 @@
         <div>{{weather}}</div>
     </div>
     <div class="done-todo animated"></div>
+
     <div class="cover">
         <div class="main-frame">
             <div class="name">{{greeting}}
@@ -104,7 +111,12 @@
     <div class="version">version</div>
 
 
-
+    <script src="res/scripts/angular.js"></script>
+    <script src="res/scripts/jquery.js"></script>
+    <script src="res/scripts/tether.min.js"></script>
+    <script src="res/scripts/bootstrap.js"></script>
+    <script src="res/scripts/cookies.js"></script>
+    <script src="res/scripts/main.js"></script>
 </body>
 
 </html>

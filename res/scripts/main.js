@@ -26,6 +26,7 @@ app.controller('ctrl', ['$scope', function ($scope) {
     $scope.todos = [];
     $scope.focus = undefined;
     $scope.focus_done = false;
+    $scope.backgroundLoaded = false;
     $scope.todoDelete = function (event) {
         collapseAllTodoOptionPopups();
         if (confirm('Are you sure to delete this todo item?')) {
@@ -500,6 +501,7 @@ function setBackground() {
             version: VERSION
         },
         success: function (data) {
+
             console.log('Connection established');
             $("body").css('background-image', `url('./res/blobs/${currentImage}.jpg')`);
             var newCache = Cookies.getJSON('imageCache').images;
@@ -510,10 +512,19 @@ function setBackground() {
                 images: newCache
             });
             console.log(Cookies.getJSON('imageCache'));
+            angular.element($("#parent")).scope().backgroundLoaded = true;
+            angular.element($("#parent")).scope().$apply();
+            descendCurtain();
         },
         error: function (data) {
             console.log('No connectivity');
-            $("body").css('background-image', `url('./res/blobs/${Cookies.getJSON('imageCache').images[Math.floor(Math.random() * imageCacheLength) + 1]}.jpg')`);
+            console.log(Cookies.getJSON('imageCache'));
+            var rand = Math.floor(Math.random() * imageCacheLength) + 1;
+            console.log('image index is ', rand);
+            $("body").css('background-image', `url('./res/blobs/${Cookies.getJSON('imageCache').images[rand]}.jpg')`);
+            angular.element($("#parent")).scope().backgroundLoaded = true;
+            angular.element($("#parent")).scope().$apply();
+            descendCurtain();
         }
     });
 
@@ -787,19 +798,20 @@ if ('serviceWorker' in navigator) {
 
 
 $(window).on('load', function () {
+
     getCookie();
     getTodos();
     makeEditable($(".user_name_self"), 'name');
     makeEditable($(".td"), 'todo');
-    setBackground();
+
     setVersion();
     todoCheck();
     setPannels();
     getFocus();
     getTimer();
-
+    setBackground();
     //ALL ARE SET. NOW DESCENDING THE CURTAIN !!!
-    descendCurtain();
+    // descendCurtain();
 
     //EVENT LISTENERS
 
@@ -846,8 +858,5 @@ $(window).on('load', function () {
             }
         }
     });
-
-
-
 
 });
