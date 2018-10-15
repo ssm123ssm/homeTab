@@ -1,0 +1,20 @@
+{
+    "name": "homepage_git",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ssm123ssm/homeTab.git"
+    },
+    "author": "ssm123",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ssm123ssm/homeTab/issues"
+    },
+    "homepage": "https://github.com/ssm123ssm/homeTab#readme"
+}
