@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ssm123ssm/homeTab#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "https": "^1.0.0"
   }
 }
