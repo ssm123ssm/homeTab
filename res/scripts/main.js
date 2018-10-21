@@ -495,7 +495,7 @@ function setBackground() {
     var imageCacheLength = Cookies.getJSON('imageCache').images.length;
     //Connectivity checking
     $.ajax({
-        url: '/connect',
+        url: 'http://35.200.197.150/connect',
         method: 'POST',
         data: {
             version: VERSION

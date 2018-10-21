@@ -29,7 +29,7 @@ app.get('/bobnames', function (req, res) {
 });
 
 
-app.post('http://35.200.197.150/connect', function (req, res) {
+app.post('/connect', function (req, res) {
     var uptodate = false;
     if (Number.parseFloat(req.body.version) == currentVersion) {
         uptodate = true;
