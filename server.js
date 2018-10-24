@@ -43,10 +43,10 @@ app.post('/connect', function (req, res) {
 
 
 var key = fs.readFileSync('ssl_cert/example.key');
-var cert = fs.readFileSync('ssl_cert/example.key.crt');
+var cert = fs.readFileSync('ssl_cert/example.crt');
 var options = {
     key: key,
     cert: cert
 };
-//app.listen(port, () => console.log(`Server started on ${port}\nVersion on server is ${currentVersion}`));
-https.createServer(options, app).listen(443);
+app.listen(port, () => console.log(`Server started on ${port}\nVersion on server is ${currentVersion}`));
+//https.createServer(options, app).listen(443);
