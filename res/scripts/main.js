@@ -814,6 +814,9 @@ $(window).on('load', function () {
     // descendCurtain();
 
     //EVENT LISTENERS
+    $(".fl").click(function () {
+        launchFullScreen();
+    });
 
     //TODO
     $(".link-todo").click(function () {
@@ -860,3 +863,15 @@ $(window).on('load', function () {
     });
 
 });
+
+function launchFullScreen() {
+    if (document.documentElement.requestFullScreen) {
+        document.documentElement.requestFullScreen();
+    } else if (document.documentElement.mozRequestFullScreen) {
+        document.documentElement.mozRequestFullScreen();
+    } else if (document.documentElement.webkitRequestFullScreen) {
+        document.documentElement.webkitRequestFullScreen();
+    }
+}
+
+// Launch fullscreen for browsers that support it!
