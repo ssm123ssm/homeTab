@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var port = 80;
+var port = 8080;
 var app = express();
 const currentVersion = 2.1;
 var https = require('https');
