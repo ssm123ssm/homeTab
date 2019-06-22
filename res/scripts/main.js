@@ -498,24 +498,36 @@ function setBackground() {
         url: 'https://mixedcnt.herokuapp.com/post',
         method: 'POST',
         data: {
-	url:'http://35.200.245.209:8080/connect',
+            url: 'http://35.200.245.209:8080/connect',
             version: VERSION
         },
         success: function (data) {
 
-            console.log('Connection established');
-            $("body").css('background-image', `url('./res/blobs/${currentImage}.jpg')`);
-            var newCache = Cookies.getJSON('imageCache').images;
-            if (newCache.indexOf(currentImage) < 0) {
-                newCache.push(currentImage);
+            if (data.currentVersion) {
+                console.log('Connection established');
+                $("body").css('background-image', `url('./res/blobs/${currentImage}.jpg')`);
+                var newCache = Cookies.getJSON('imageCache').images;
+                if (newCache.indexOf(currentImage) < 0) {
+                    newCache.push(currentImage);
+                }
+                setCustomCookie('imageCache', {
+                    images: newCache
+                });
+                console.log(Cookies.getJSON('imageCache'));
+                angular.element($("#parent")).scope().backgroundLoaded = true;
+                angular.element($("#parent")).scope().$apply();
+                descendCurtain();
+            } else {
+                console.log('Something went wrong. Probably at mixedCnt level');
+                console.log(Cookies.getJSON('imageCache'));
+                var rand = Math.floor(Math.random() * imageCacheLength) + 1;
+                console.log('image index is ', rand);
+                $("body").css('background-image', `url('./res/blobs/${Cookies.getJSON('imageCache').images[rand-1]}.jpg')`);
+                angular.element($("#parent")).scope().backgroundLoaded = true;
+                angular.element($("#parent")).scope().$apply();
+                descendCurtain();
             }
-            setCustomCookie('imageCache', {
-                images: newCache
-            });
-            console.log(Cookies.getJSON('imageCache'));
-            angular.element($("#parent")).scope().backgroundLoaded = true;
-            angular.element($("#parent")).scope().$apply();
-            descendCurtain();
+
         },
         error: function (data) {
             console.log('No connectivity');
