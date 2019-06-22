@@ -289,8 +289,10 @@ function getState(key, scope) {
         url: url,
         method: 'GET',
         success: function (data) {
-            scope.weather = `It's ${data[0].WeatherText} today`;
-            scope.$apply();
+            if (data != 'error') {
+                scope.weather = `It's ${data[0].WeatherText} today`;
+                scope.$apply();
+            }
         }
     });
 }
@@ -302,9 +304,12 @@ function getLocation(scope) {
             url: keyUrl,
             method: 'GET',
             success: function (data) {
-                scope.city = data.LocalizedName;
-                var locaTionKey = data.Key;
-                getState(locaTionKey, scope);
+                if (data != 'error') {
+                    scope.city = data.LocalizedName;
+                    var locaTionKey = data.Key;
+                    getState(locaTionKey, scope);
+                }
+
             }
         });
     });
