@@ -283,7 +283,7 @@ app.controller('ctrl', ['$scope', function ($scope) {
 var apiKey = 'OVQblkRsr1NnzAYRY6L5ixR0GGzlN3GO';
 
 function getState(key, scope) {
-    var url = 'https://dashboard.heroku.com/apps/mixedcnt/get?url=' + 'http://dataservice.accuweather.com/currentconditions/v1/' + key + '?apikey=' + apiKey;
+    var url = 'https://mixedcnt.herokuapp.com/get?url=' + 'http://dataservice.accuweather.com/currentconditions/v1/' + key + '?apikey=' + apiKey;
     //console.log(url);
     $.ajax({
         url: url,
@@ -297,7 +297,7 @@ function getState(key, scope) {
 
 function getLocation(scope) {
     navigator.geolocation.getCurrentPosition(function (position) {
-        var keyUrl = 'https://dashboard.heroku.com/apps/mixedcnt/get?url=' + 'http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=' + apiKey + '&q=' + position.coords.latitude + ',' + position.coords.longitude;
+        var keyUrl = 'https://mixedcnt.herokuapp.com/get?url=' + 'http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=' + apiKey + '&q=' + position.coords.latitude + ',' + position.coords.longitude;
         $.ajax({
             url: keyUrl,
             method: 'GET',
@@ -495,7 +495,7 @@ function setBackground() {
     var imageCacheLength = Cookies.getJSON('imageCache').images.length;
     //Connectivity checking
     $.ajax({
-        url: 'https://dashboard.heroku.com/apps/mixedcnt/post',
+        url: 'https://mixedcnt.herokuapp.com/post',
         method: 'POST',
         data: {
 	url:'http://35.200.245.209:8080/connect',
