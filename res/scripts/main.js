@@ -283,7 +283,7 @@ app.controller('ctrl', ['$scope', function ($scope) {
 var apiKey = 'OVQblkRsr1NnzAYRY6L5ixR0GGzlN3GO';
 
 function getState(key, scope) {
-    var url = 'http://dataservice.accuweather.com/currentconditions/v1/' + key + '?apikey=' + apiKey;
+    var url = 'http://localhost/get?url=' + 'http://dataservice.accuweather.com/currentconditions/v1/' + key + '?apikey=' + apiKey;
     //console.log(url);
     $.ajax({
         url: url,
@@ -297,7 +297,7 @@ function getState(key, scope) {
 
 function getLocation(scope) {
     navigator.geolocation.getCurrentPosition(function (position) {
-        var keyUrl = 'http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=' + apiKey + '&q=' + position.coords.latitude + ',' + position.coords.longitude;
+        var keyUrl = 'http://localhost/get?url=' + 'http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=' + apiKey + '&q=' + position.coords.latitude + ',' + position.coords.longitude;
         $.ajax({
             url: keyUrl,
             method: 'GET',
