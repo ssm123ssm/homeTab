@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var port = 8080;
 var app = express();
-const currentVersion = 2.1;
+const currentVersion = 2.11;
 var https = require('https');
 var fs = require('fs');
 
