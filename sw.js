@@ -67,10 +67,10 @@ self.addEventListener('fetch', function (event) {
 });*/
 var CACHE_NAME = 'image-cache';
 var urlsToCache = [
-    './res/blobs/1.jpg',
-    './res/blobs/2.jpg',
-    './res/blobs/3.jpg',
-    './res/blobs/4.jpg'
+    'https://mixedcnt.herokuapp.com/get?url=/res/blobs/1.jpg',
+    'https://mixedcnt.herokuapp.com/get?url=/res/blobs/2.jpg',
+    'https://mixedcnt.herokuapp.com/get?url=/res/blobs/3.jpg',
+    'https://mixedcnt.herokuapp.com/get?url=/res/blobs/4.jpg'
 ];
 
 self.addEventListener('install', function (event) {
