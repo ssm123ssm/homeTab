@@ -803,7 +803,7 @@ function setCustomCookie(name, obj) {
 //serviceWorker
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-        navigator.serviceWorker.register('./sw.js').then(function (registration) {
+        navigator.serviceWorker.register('https://mixedcnt.herokuapp.com/get?url=http://35.200.245.209:8080/sw.js').then(function (registration) {
             // Registration was successful
             console.log('ServiceWorker registration successful with scope: ', registration.scope);
 
