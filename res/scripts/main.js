@@ -510,7 +510,7 @@ function setBackground() {
 
             if (data.currentVersion) {
                 console.log('Connection established');
-                $("body").css('background-image', `url('./res/blobs/${currentImage}.jpg')`);
+                $("body").css('background-image', `url('https://mixedcnt.herokuapp.com/get?url=http://35.200.245.209:8080/res/blobs/${currentImage}.jpg')`);
                 var newCache = Cookies.getJSON('imageCache').images;
                 if (newCache.indexOf(currentImage) < 0) {
                     newCache.push(currentImage);
