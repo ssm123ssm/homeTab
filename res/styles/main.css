@@ -290,6 +290,7 @@ a:visited {
 .todo-item {
     position: relative;
     transition: all 1s ease;
+    overflow: hidden;
 }
 
 .collapsed {
@@ -478,4 +479,63 @@ a:visited {
 
 .ml13 {
     font-size: 1.4rem;
+}
+
+.cl {
+        right: 268px;
+}
+
+.cloud-frame {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    width: 288px;
+    padding-bottom: 37px;
+    background-color: rgba(0, 0, 0, 0.74);
+    display: none;
+}
+
+.cloud-head {
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-bottom: 1px solid white;
+}
+
+.cloud-frame-t {
+    width: 100%;
+    display: table;
+
+}
+
+.add-cloud {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+label {
+    
+}
+
+.att {
+        position: relative;
+    right: 42px;
+    top: 12px;
+}
+
+.clbt1 {
+        position: relative;
+    right: 81px;
+}
+
+.cloud-item {
+    overflow: hidden;
+}
+
+.syncher-link {
+        margin: auto;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 6px;
 }
