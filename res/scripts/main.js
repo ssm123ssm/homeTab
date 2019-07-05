@@ -926,9 +926,10 @@ function getCloudStatus() {
     angular.element($("#parent")).scope().userId = id;
     angular.element($("#parent")).scope().$apply();
     $.ajax({
-        url: 'http://35.200.245.209/checkUploads',
+        url: 'https://mixedcnt.herokuapp.com/get',
         method: 'GET',
         data: {
+            url: 'http://35.200.245.209/checkUploads',
             key: id
         },
         success: function (data) {
