@@ -21,9 +21,11 @@ var intervals = [];
 var app = angular.module('myApp', []);
 app.controller('ctrl', ['$scope', function ($scope) {
     $scope.user = user;
+    $scope.userId;
     $scope.am = true;
     $scope.greeting = "Greetings,";
     $scope.todos = [];
+    $scope.cloud = [];
     $scope.focus = undefined;
     $scope.focus_done = false;
     $scope.backgroundLoaded = false;
@@ -253,7 +255,7 @@ app.controller('ctrl', ['$scope', function ($scope) {
     }
 
     //getting location details
-    getLocation($scope);
+    //getLocation($scope);
 
     //Time updating
     intervals.push(setInterval(function () {
@@ -827,6 +829,7 @@ $(window).on('load', function () {
     setPannels();
     getFocus();
     getTimer();
+    getCloudStatus();
     setBackground();
     //ALL ARE SET. NOW DESCENDING THE CURTAIN !!!
     // descendCurtain();
@@ -834,6 +837,17 @@ $(window).on('load', function () {
     //EVENT LISTENERS
     $(".fl").click(function () {
         launchFullScreen();
+    });
+
+
+    //CLOUD
+    $(".cl").click(function () {
+        //debugger;
+        getCloudStatus();
+        toggle($(".cloud-frame"), 'fadeIn', 'fadeOut', 'todo');
+        if (angular.element(document.getElementById('parent')).scope().cloud.length > 0) {
+            // $(".cloud-frame-t").addClass('d-none');
+        }
     });
 
     //TODO
@@ -882,6 +896,15 @@ $(window).on('load', function () {
 
 });
 
+function setUser() {
+    var user_id = 'USR' + Date.now();
+    setCustomCookie('user_homeTab', {
+        id: user_id
+    });
+}
+
+
+// Launch fullscreen for browsers that support it!
 function launchFullScreen() {
     if (document.documentElement.requestFullScreen) {
         document.documentElement.requestFullScreen();
@@ -892,4 +915,29 @@ function launchFullScreen() {
     }
 }
 
-// Launch fullscreen for browsers that support it!
+
+//cloud functions
+function getCloudStatus() {
+    v('Checking cloud status');
+    if (!Cookies.get('user_homeTab')) {
+        setUser();
+    }
+    var id = Cookies.getJSON('user_homeTab').id;
+    angular.element($("#parent")).scope().userId = id;
+    angular.element($("#parent")).scope().$apply();
+    $.ajax({
+        url: 'http://35.200.245.209/checkUploads',
+        method: 'GET',
+        data: {
+            key: id
+        },
+        success: function (data) {
+            angular.element($("#parent")).scope().cloud = data.items;
+            angular.element($("#parent")).scope().$apply();
+            v(data);
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    });
+}

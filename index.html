@@ -81,6 +81,36 @@
 
         </div>
 
+        <div class="cloud-frame animated">
+            <div class="cloud-head text-center">Cloud Storage</div>
+            <div class="cloud-frame-t">
+                <div class="test1">
+                    <form action="http://35.200.245.209/upload" method="post" enctype="multipart/form-data" id="form1">
+                        <div class="form-group m-0">
+                            <input type="text" value="{{userId}}" name="key" hidden>
+                            <div class="text-center btn-synch border-round-1">
+                                <label class="m-0" for="imgupload">Attach</label>
+                            </div>
+                            <input type="file" name="img" class="form-control-file" id="imgupload" />
+                            <button class="btn btn-primary m-3 mx-auto d-block" id="add-cloud-btn" type="submit">Add files</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="syncher-link m-3">
+                <a href="http://35.200.245.209?key={{userId}}" target="_blank">mySyncher</a>
+            </div>
+            <div class="cloud_items">
+                <div class="cloud-item p-1 animated fadeIn" ng-repeat='item in cloud track by $index' ng-init='visible = 0' ng-mouseover='visible = 1' ng-mouseleave='visible = 0'>
+                    <div class="cloud_item_"> <a href="http://35.200.245.209/uploads/{{item}}">{{item.split('-')[0]}}</a> </div>
+                    <div class="options" ng-show="visible" ng-click="cloudOptions($event)">...</div>
+                    <div class="option-popup" ng-if="showPopup">
+                        <div class="option-item" ng-click="cloudItemDelete($event)">Delete item</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div class="time-setter-frame animated text-center">
@@ -110,7 +140,7 @@
     <div class="link link-todo">Todo</div>
     <div class="version">version</div>
     <div class=" link fl">Go fullscreen</div>
-    <div class=" link fl">Cloud</div>
+    <div class=" link cl">Cloud</div>
 
 
     <script src="./res/scripts/angular.js"></script>
@@ -118,6 +148,7 @@
     <script src="./res/scripts/tether.min.js"></script>
     <script src="./res/scripts/bootstrap.js"></script>
     <script src="./res/scripts/cookies.js"></script>
+    <script src="./res/scripts/abbr.js"></script>
     <script src="./res/scripts/main.js"></script>
 </body>
 
