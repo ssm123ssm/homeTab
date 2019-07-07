@@ -7,7 +7,7 @@ var https = require('https');
 var fs = require('fs');
 
 
-app.use(express.static(__dirname + '/'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json({
     limit: '50mb'
 })); // to support JSON-encoded bodies
@@ -16,11 +16,15 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
     extended: true
 }));
 
-const blobFolder = './res/blobs/';
+const blobFolder = './public/res/blobs/';
 var blobArray = [];
 
 fs.readdirSync(blobFolder).forEach(file => {
     blobArray.push(file);
+});
+
+app.get('/', function (req, res) {
+    res.sendFile('./public/index.html');
 });
 
 app.get('/bobnames', function (req, res) {
