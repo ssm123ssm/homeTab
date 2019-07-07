@@ -24,7 +24,7 @@ fs.readdirSync(blobFolder).forEach(file => {
 });
 
 app.get('/', function (req, res) {
-    res.sendFile('./public/index.html');
+    res.sendFile(__dirname + '/public/index.html');
 });
 
 app.get('/bobnames', function (req, res) {
