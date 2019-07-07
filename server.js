@@ -7,7 +7,7 @@ var https = require('https');
 var fs = require('fs');
 
 
-app.use(express.static('./'));
+app.use(express.static(__dirname + '/'));
 app.use(bodyParser.json({
     limit: '50mb'
 })); // to support JSON-encoded bodies
